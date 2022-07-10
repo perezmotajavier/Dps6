@@ -27,7 +27,7 @@ class PagesController extends AbstractController
         // Default character
         $characters = range('a', 'z');
 
-        if ($uppercaseLetters){
+        if ($uppercaseLetters) {
             $characters = array_merge($characters, range('A', 'Z'));
         }
         if ($digits) {
@@ -41,14 +41,10 @@ class PagesController extends AbstractController
         $password = '';
 
         for ($i = 0; $i < $lenght; $i++) {
-            $password = $password . $characters[mt_rand(0, count($characters) - 1)];
+            $password .= $characters[array_rand($characters)];
         }
 
-
-        return $this->render('pages/password.html.twig', [
-            'password' => $password
-        ]);
-
+        return $this->render('pages/password.html.twig', compact('password'));
 
     }
 }
