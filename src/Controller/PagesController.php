@@ -19,32 +19,78 @@ class PagesController extends AbstractController
     #[Route('/generate-password', name: 'app_generate_password')]
     public function generatePassword(Request $request)
     {
-        $lenght = $request->query->getInt('lenght');
+        $length = $request->query->getInt('lenght');
+
         $uppercaseLetters = $request->query->getBoolean('uppercase_letters');
+
         $digits = $request->query->getBoolean('digits');
+
         $specialCharacters = $request->query->getBoolean('special_characters');
 
-        // Default character
-        $characters = range('a', 'z');
+        $lowercaseLettersSet = range('a', 'z');
 
-        if ($uppercaseLetters) {
-            $characters = array_merge($characters, range('A', 'Z'));
-        }
-        if ($digits) {
-            $characters = array_merge($characters, range(0, 9));
-        }
-        if ($specialCharacters) {
-            $characters = array_merge($characters, ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']);
+        $uppercaseLettersSet = range('A', 'Z');
 
-        }
+        $digitsSet = range(0, 9);
+
+        $specialCharactersSet = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
+
+        $characters = $lowercaseLettersSet;
 
         $password = '';
 
-        for ($i = 0; $i < $lenght; $i++) {
-            $password .= $characters[random_int(0, count($characters) -1)];
+        // On ajoute une lettre en minuscule de manière aléatoire
+        $password .= $lowercaseLettersSet[random_int(0, count($lowercaseLettersSet) - 1)];
+
+        if ($uppercaseLetters) {
+            $characters = array_merge($characters, $uppercaseLettersSet);
+
+            // On ajoute une lettre en majuscule de manière aléatoire
+            $password .= $uppercaseLettersSet[random_int(0, count($uppercaseLettersSet) - 1)];
         }
+
+        if ($digits) {
+            $characters = array_merge($characters, $digitsSet);
+
+            // On ajoute un chiffre de manière aléatoire
+            $password .= $digitsSet[random_int(0, count($digitsSet) - 1)];
+
+        }
+
+        if ($specialCharacters) {
+            $characters = array_merge($characters, $specialCharactersSet);
+
+            // On ajoute des caractères spéciaux de manière aléatoire
+            $password .= $specialCharactersSet[random_int(0, count($specialCharactersSet) - 1)];
+        }
+
+        $numberOfCharactersRemaining = $length - mb_strlen($password);
+
+        for ($i = 0; $i < $numberOfCharactersRemaining; $i++) {
+            $password .= $characters[random_int(0, count($characters) - 1)];
+        }
+
+        $password = str_split($password);
+
+        $this->secureShuffle($password);
+
+        $password = implode('', $password);
+
 
         return $this->render('pages/password.html.twig', compact('password'));
 
+    }
+
+    private function secureShuffle(array &$arr): void
+    {
+        // Source: https://github.com/lamansky/secure-shuffle/blob/master/src/functions.php
+        $arr = array_values($arr);
+        $length = count($arr);
+        for ($i = $length - 1; $i > 0; $i--) {
+            $j = random_int(0, $i);
+            $temp = $arr[$i];
+            $arr[$i] = $arr[$j];
+            $arr[$j] = $temp;
+        }
     }
 }
