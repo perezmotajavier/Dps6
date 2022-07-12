@@ -27,47 +27,47 @@ class PagesController extends AbstractController
 
         $specialCharacters = $request->query->getBoolean('special_characters');
 
-        $lowercaseLettersSet = range('a', 'z');
+        $lowercaseLettersAlphabet = range('a', 'z');
 
-        $uppercaseLettersSet = range('A', 'Z');
+        $uppercaseLettersAlphabet = range('A', 'Z');
 
-        $digitsSet = range(0, 9);
+        $digitsAlphabet = range(0, 9);
 
-        $specialCharactersSet = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
+        $specialCharactersAlphabet = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
 
-        $characters = $lowercaseLettersSet;
+        $finalAlphabet = $lowercaseLettersAlphabet;
 
         $password = '';
 
-        // On ajoute une lettre en minuscule de manière aléatoire
-        $password .= $lowercaseLettersSet[random_int(0, count($lowercaseLettersSet) - 1)];
+        // We add a lowercase letter randomly
+        $password .= $this->pickRandomItemFromAlphabet($lowercaseLettersAlphabet);
 
         if ($uppercaseLetters) {
-            $characters = array_merge($characters, $uppercaseLettersSet);
+            $finalAlphabet = array_merge($finalAlphabet, $uppercaseLettersAlphabet);
 
-            // On ajoute une lettre en majuscule de manière aléatoire
-            $password .= $uppercaseLettersSet[random_int(0, count($uppercaseLettersSet) - 1)];
+            // Add a random uppercase letter
+            $password .= $this->pickRandomItemFromAlphabet($uppercaseLettersAlphabet);
         }
 
         if ($digits) {
-            $characters = array_merge($characters, $digitsSet);
+            $finalAlphabet = array_merge($finalAlphabet, $digitsAlphabet);
 
-            // On ajoute un chiffre de manière aléatoire
-            $password .= $digitsSet[random_int(0, count($digitsSet) - 1)];
+            // Add a random number
+            $password .= $this->pickRandomItemFromAlphabet($digitsAlphabet);
 
         }
 
         if ($specialCharacters) {
-            $characters = array_merge($characters, $specialCharactersSet);
+            $finalAlphabet = array_merge($finalAlphabet, $specialCharactersAlphabet);
 
-            // On ajoute des caractères spéciaux de manière aléatoire
-            $password .= $specialCharactersSet[random_int(0, count($specialCharactersSet) - 1)];
+            // Add special characters randomly
+            $password .= $this->pickRandomItemFromAlphabet($specialCharactersAlphabet);
         }
 
         $numberOfCharactersRemaining = $length - mb_strlen($password);
 
         for ($i = 0; $i < $numberOfCharactersRemaining; $i++) {
-            $password .= $characters[random_int(0, count($characters) - 1)];
+            $password .= $this->pickRandomItemFromAlphabet($finalAlphabet);
         }
 
         $password = str_split($password);
@@ -81,6 +81,11 @@ class PagesController extends AbstractController
 
     }
 
+    /**
+     * @param array $arr
+     * @return array
+     * @throws \Exception
+     */
     private function secureShuffle(array $arr): array
     {
         // Source: https://github.com/lamansky/secure-shuffle/blob/master/src/functions.php
@@ -93,5 +98,10 @@ class PagesController extends AbstractController
             $arr[$j] = $temp;
         }
         return $arr;
+    }
+
+    private function pickRandomItemFromAlphabet(array $alphabet): string
+    {
+        return $alphabet[random_int(0, count($alphabet) - 1)];
     }
 }
