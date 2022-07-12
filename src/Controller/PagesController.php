@@ -16,6 +16,9 @@ class PagesController extends AbstractController
         return $this->render('pages/home.html.twig');
     }
 
+    /**
+     * @throws \Exception
+     */
     #[Route('/generate-password', name: 'app_generate_password')]
     public function generatePassword(Request $request): Response
     {
@@ -33,27 +36,31 @@ class PagesController extends AbstractController
 
         $digitsAlphabet = range(0, 9);
 
-        $specialCharactersAlphabet = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
+        $specialCharactersAlphabet = array_merge(
+            range('!','/'),
+            range(':','@'),
+            range('[','`'),
+            range('{','~'),
+        );
 
         $finalAlphabet = $lowercaseLettersAlphabet;
 
-        $password = '';
 
         // We add a lowercase letter randomly
-        $password .= $this->pickRandomItemFromAlphabet($lowercaseLettersAlphabet);
+        $password[] = $this->pickRandomItemFromAlphabet($lowercaseLettersAlphabet);
 
         if ($uppercaseLetters) {
             $finalAlphabet = array_merge($finalAlphabet, $uppercaseLettersAlphabet);
 
             // Add a random uppercase letter
-            $password .= $this->pickRandomItemFromAlphabet($uppercaseLettersAlphabet);
+            $password[] = $this->pickRandomItemFromAlphabet($uppercaseLettersAlphabet);
         }
 
         if ($digits) {
             $finalAlphabet = array_merge($finalAlphabet, $digitsAlphabet);
 
             // Add a random number
-            $password .= $this->pickRandomItemFromAlphabet($digitsAlphabet);
+            $password[] = $this->pickRandomItemFromAlphabet($digitsAlphabet);
 
         }
 
@@ -61,16 +68,14 @@ class PagesController extends AbstractController
             $finalAlphabet = array_merge($finalAlphabet, $specialCharactersAlphabet);
 
             // Add special characters randomly
-            $password .= $this->pickRandomItemFromAlphabet($specialCharactersAlphabet);
+            $password[] = $this->pickRandomItemFromAlphabet($specialCharactersAlphabet);
         }
 
-        $numberOfCharactersRemaining = $length - mb_strlen($password);
+        $numberOfCharactersRemaining = $length - count($password);
 
         for ($i = 0; $i < $numberOfCharactersRemaining; $i++) {
-            $password .= $this->pickRandomItemFromAlphabet($finalAlphabet);
+            $password[] = $this->pickRandomItemFromAlphabet($finalAlphabet);
         }
-
-        $password = str_split($password);
 
         $password = $this->secureShuffle($password);
 
