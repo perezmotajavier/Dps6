@@ -17,7 +17,7 @@ class PagesController extends AbstractController
     }
 
     #[Route('/generate-password', name: 'app_generate_password')]
-    public function generatePassword(Request $request)
+    public function generatePassword(Request $request): Response
     {
         $length = $request->query->getInt('lenght');
 
@@ -72,7 +72,7 @@ class PagesController extends AbstractController
 
         $password = str_split($password);
 
-        $this->secureShuffle($password);
+        $password = $this->secureShuffle($password);
 
         $password = implode('', $password);
 
@@ -81,16 +81,17 @@ class PagesController extends AbstractController
 
     }
 
-    private function secureShuffle(array &$arr): void
+    private function secureShuffle(array $arr): array
     {
         // Source: https://github.com/lamansky/secure-shuffle/blob/master/src/functions.php
-        $arr = array_values($arr);
         $length = count($arr);
+
         for ($i = $length - 1; $i > 0; $i--) {
             $j = random_int(0, $i);
             $temp = $arr[$i];
             $arr[$i] = $arr[$j];
             $arr[$j] = $temp;
         }
+        return $arr;
     }
 }
