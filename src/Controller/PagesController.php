@@ -20,22 +20,14 @@ class PagesController extends AbstractController
     public function generatePassword(Request $request, PasswordGenerator $passwordGenerator): Response
     {
 
-        $length = $request->query->getInt('length');
-
-        $uppercaseLetters = $request->query->getBoolean('uppercase_letters');
-
-        $digits = $request->query->getBoolean('digits');
-
-        $specialCharacters = $request->query->getBoolean('special_characters');
-
         $password = $passwordGenerator->generate(
-            $length,
-            $uppercaseLetters,
-            $digits,
-            $specialCharacters,
+
+            $request->query->getInt('length'),
+            $request->query->getBoolean('uppercase_letters'),
+            $request->query->getBoolean('digits'),
+            $request->query->getBoolean('special_characters'),
         );
 
         return $this->render('pages/password.html.twig', compact('password'));
-
     }
 }
