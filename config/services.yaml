@@ -4,6 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    app.password_default_length: 12
+    app.password_min_length: 8
+    app.password_max_length: 60
 
 services:
     # default configuration for services in *this* file
