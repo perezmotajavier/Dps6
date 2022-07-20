@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92b1ea73-0791-4bd2-9d50-df4f8b5bbc4b" name="Changes" comment="" />
+    <list default="true" id="92b1ea73-0791-4bd2-9d50-df4f8b5bbc4b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Service/PasswordGenerator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/PasswordGenerator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/home.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
