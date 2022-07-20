@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92b1ea73-0791-4bd2-9d50-df4f8b5bbc4b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Service/PasswordGenerator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/PasswordGenerator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
