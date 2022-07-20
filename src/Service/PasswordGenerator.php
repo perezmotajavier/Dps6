@@ -10,7 +10,7 @@ class PasswordGenerator
     public function generate(
         int  $length, bool $uppercaseLetters = false,
         bool $digits = false, bool $specialCharacters = false): string
-    {// Final alphabet defaults to all lowercase letters alphabet
+    {
         $lowercaseLettersAlphabet = range('a', 'z');
         $uppercaseLettersAlphabet = range('A', 'Z');
         $digitsAlphabet = range(0, 9);
