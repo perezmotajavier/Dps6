@@ -2,8 +2,13 @@
 
 namespace App\Service;
 
+use Exception;
+
 class PasswordGenerator
 {
+    /**
+     * @throws Exception
+     */
     public function generate(
         int  $length, bool $uppercaseLetters = false,
         bool $digits = false, bool $specialCharacters = false): string
@@ -60,12 +65,18 @@ class PasswordGenerator
 
     }
 
+    /**
+     * @throws Exception
+     */
     private function pickRandomItemFromAlphabet(array $alphabet): string
     {
 
         return $alphabet[random_int(0, count($alphabet) - 1)];
     }
 
+    /**
+     * @throws Exception
+     */
     private function secureShuffle(array $arr): array
     {
         // Source: https://github.com/lamansky/secure-shuffle/blob/master/src/functions.php

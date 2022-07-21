@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92b1ea73-0791-4bd2-9d50-df4f8b5bbc4b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/PasswordGenerator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/PasswordGenerator.php" afterDir="false" />
-    </list>
+    <list default="true" id="92b1ea73-0791-4bd2-9d50-df4f8b5bbc4b" name="Changes" comment="" />
     <list id="dcda051e-90cd-4679-8626-0eae5cdfd9cb" name="Password" comment="Password" />
     <list id="e33ff138-4403-4687-a89a-8a1a1f46dcd4" name="PW" comment="PW" />
     <option name="SHOW_DIALOG" value="false" />
