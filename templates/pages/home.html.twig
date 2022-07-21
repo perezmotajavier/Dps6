@@ -3,16 +3,26 @@
 {% block body %}
     <h1>Password Generator</h1>
 
-    <form id="js-password-generator-form" method="get" action="{{ path('app_generate_password') }}">
+    <form
+            id="js-password-generator-form"
+            method="get"
+            action="{{ path('app_generate_password') }}"
+            x-data="{
+    length: $persist({{ password_default_length }}),
+    uppercaseLetters: $persist(false),
+    digits: $persist(false),
+    specialCharacters: $persist(false)
+    }"
+    >
         <div>
             <label for="length">Length</label>
-            <select id="length" name="length">
+            <select id="length" name="length" x-model="length">
                 {% for i in password_min_length..password_max_length %}
-                    <option value="{{ i }}"{{ i == password_default_length ? 'selected' }}>{{ i }}</option>
+                    <option value="{{ i }}">{{ i }}</option>
+                    {# {{ i == password_default_length ? 'selected' }} #}
                 {% endfor %}
             </select>
         </div>
-
 
         <div>
             <label for="uppercase-letters">Uppercase Letters</label>
@@ -20,6 +30,7 @@
                     type="checkbox"
                     id="uppercase-letters"
                     name="uppercase_letters"
+                    x-model="uppercaseLetters"
             >
         </div>
 
@@ -29,6 +40,7 @@
                     type="checkbox"
                     id="digits"
                     name="digits"
+                    x-model="digits"
             >
         </div>
 
@@ -38,6 +50,7 @@
                     type="checkbox"
                     id="special-characters"
                     name="special_characters"
+                    x-model="specialCharacters"
             >
         </div>
 
@@ -54,8 +67,9 @@
     </footer>
 {% endblock %}
 
-{% block javascripts %} 
-    {# JavaScript #}
-    <script src="/js/password-preferences.js" defer></script>
-
+{% block javascripts %}
+    {# Alpine Plugins #}
+    <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    {# Alpine Js CDN #}
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 {% endblock %}
