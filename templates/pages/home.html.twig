@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Password Generator</h1>
+
     <div
+            x-cloak
             x-data="{
     length: $persist({{ password_default_length }}).as('length'),
     uppercaseLetters: $persist(false).as('uppercaseLetters'),
@@ -11,6 +12,7 @@
     }"
             id="js-password-generator"
     >
+        <h1>Password Generator</h1>
         <form
                 id="js-password-generator-form"
                 method="get"
@@ -18,7 +20,7 @@
         >
             <div>
                 <label for="length">Length</label>
-                <select id="length" name="length" x-model="length" x-cloak>
+                <select id="length" name="length" x-model="length">
                     {% for i in password_min_length..password_max_length %}
                         <option value="{{ i }}">{{ i }}</option>
                         {# {{ i == password_default_length ? 'selected' }} #}
@@ -60,14 +62,14 @@
                 <button type="submit">Generate Password</button>
             </div>
         </form>
-    </div>
 
-    <footer>
-        <p>
-            Built with &hearts; by
-            <a href="https://parolnscode.com">Parlons Code</a>.
-        </p>
-    </footer>
+        <footer>
+            <p>
+                Built with &hearts; by
+                <a href="https://parolnscode.com">Parlons Code</a>.
+            </p>
+        </footer>
+    </div>
 {% endblock %}
 
 {# Block JavaScript #}
