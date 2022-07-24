@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="92b1ea73-0791-4bd2-9d50-df4f8b5bbc4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/password.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/password.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PagesController.php" afterDir="false" />
     </list>
     <list id="dcda051e-90cd-4679-8626-0eae5cdfd9cb" name="Password" comment="Password" />
     <list id="e33ff138-4403-4687-a89a-8a1a1f46dcd4" name="PW" comment="PW" />
@@ -97,7 +97,7 @@
       <workItem from="1658261994914" duration="6309000" />
       <workItem from="1658345781160" duration="1326000" />
       <workItem from="1658352798822" duration="2292000" />
-      <workItem from="1658684901004" duration="6276000" />
+      <workItem from="1658684901004" duration="9502000" />
     </task>
     <servers />
   </component>
