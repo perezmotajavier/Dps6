@@ -2,62 +2,65 @@
 
 {% block body %}
     <h1>Password Generator</h1>
-
-    <form
-            id="js-password-generator-form"
-            method="get"
-            action="{{ path('app_generate_password') }}"
+    <div
             x-data="{
-    length: $persist({{ password_default_length }}),
-    uppercaseLetters: $persist(false),
-    digits: $persist(false),
-    specialCharacters: $persist(false)
+    length: $persist({{ password_default_length }}).as('length'),
+    uppercaseLetters: $persist(false).as('uppercaseLetters'),
+    digits: $persist(false).as('digits'),
+    specialCharacters: $persist(false).as('specialCharacters')
     }"
+            id="js-password-generator"
     >
-        <div>
-            <label for="length">Length</label>
-            <select id="length" name="length" x-model="length">
-                {% for i in password_min_length..password_max_length %}
-                    <option value="{{ i }}">{{ i }}</option>
-                    {# {{ i == password_default_length ? 'selected' }} #}
-                {% endfor %}
-            </select>
-        </div>
+        <form
+                id="js-password-generator-form"
+                method="get"
+                action="{{ path('app_generate_password') }}"
+        >
+            <div>
+                <label for="length">Length</label>
+                <select id="length" name="length" x-model="length" x-cloak>
+                    {% for i in password_min_length..password_max_length %}
+                        <option value="{{ i }}">{{ i }}</option>
+                        {# {{ i == password_default_length ? 'selected' }} #}
+                    {% endfor %}
+                </select>
+            </div>
 
-        <div>
-            <label for="uppercase-letters">Uppercase Letters</label>
-            <input
-                    type="checkbox"
-                    id="uppercase-letters"
-                    name="uppercase_letters"
-                    x-model="uppercaseLetters"
-            >
-        </div>
+            <div>
+                <label for="uppercase-letters">Uppercase Letters</label>
+                <input
+                        type="checkbox"
+                        id="uppercase-letters"
+                        name="uppercase_letters"
+                        x-model="uppercaseLetters"
+                >
+            </div>
 
-        <div>
-            <label for="digits">Digits</label>
-            <input
-                    type="checkbox"
-                    id="digits"
-                    name="digits"
-                    x-model="digits"
-            >
-        </div>
+            <div>
+                <label for="digits">Digits</label>
+                <input
+                        type="checkbox"
+                        id="digits"
+                        name="digits"
+                        x-model="digits"
+                >
+            </div>
 
-        <div>
-            <label for="special-characters">Special Characters</label>
-            <input
-                    type="checkbox"
-                    id="special-characters"
-                    name="special_characters"
-                    x-model="specialCharacters"
-            >
-        </div>
+            <div>
+                <label for="special-characters">Special Characters</label>
+                <input
+                        type="checkbox"
+                        id="special-characters"
+                        name="special_characters"
+                        x-model="specialCharacters"
+                >
+            </div>
 
-        <div>
-            <button type="submit">Generate Password</button>
-        </div>
-    </form>
+            <div>
+                <button type="submit">Generate Password</button>
+            </div>
+        </form>
+    </div>
 
     <footer>
         <p>
@@ -67,6 +70,7 @@
     </footer>
 {% endblock %}
 
+{# Block JavaScript #}
 {% block javascripts %}
     {# Alpine Plugins #}
     <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
