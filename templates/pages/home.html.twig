@@ -3,6 +3,8 @@
 {% block body %}
     <h1>Password Generator</h1>
 
+    {% set length_to_select = app.request.cookies.getInt('app_length',password_default_length) %}
+
     <form
             method="get"
             action="{{ path('app_generate_password') }}"
@@ -12,7 +14,7 @@
             <select id="length" name="length">
                 {% for i in password_min_length..password_max_length %}
                     <option value="{{ i }}"
-                            {{ i == password_default_length ? 'selected' }}>
+                            {{ i == length_to_select ? 'selected' }}>
                         {{ i }}
                     </option>
                 {% endfor %}
@@ -25,7 +27,7 @@
                     type="checkbox"
                     id="uppercase-letters"
                     name="uppercase_letters"
-                    {{ uppercase_letters ? 'checked' }}
+                    {{ app.request.cookies.getBoolean('app_uppercase_letters') ? 'checked' }}
             >
         </div>
 
@@ -35,7 +37,7 @@
                     type="checkbox"
                     id="digits"
                     name="digits"
-                    {{ digits ? 'checked' }}
+                    {{ app.request.cookies.getBoolean('app_digits') ? 'checked' }}
             >
         </div>
 
@@ -45,7 +47,7 @@
                     type="checkbox"
                     id="special-characters"
                     name="special_characters"
-                    {{ special_characters ? 'checked' }}
+                    {{ app.request.cookies.getBoolean('app_special_characters') ? 'checked' }}
             >
         </div>
 
