@@ -2,6 +2,7 @@
 
 {% block body %}
     <h1>Password Generator</h1>
+
     <form
             method="get"
             action="{{ path('app_generate_password') }}"
@@ -10,7 +11,8 @@
             <label for="length">Length</label>
             <select id="length" name="length">
                 {% for i in password_min_length..password_max_length %}
-                    <option value="{{ i }}"{{ i == password_default_length ? 'selected' }}>
+                    <option value="{{ i }}"
+                            {{ i == password_default_length ? 'selected' }}>
                         {{ i }}
                     </option>
                 {% endfor %}
@@ -23,6 +25,7 @@
                     type="checkbox"
                     id="uppercase-letters"
                     name="uppercase_letters"
+                    {{ uppercase_letters ? 'checked' }}
             >
         </div>
 
@@ -32,6 +35,7 @@
                     type="checkbox"
                     id="digits"
                     name="digits"
+                    {{ digits ? 'checked' }}
             >
         </div>
 
@@ -41,6 +45,7 @@
                     type="checkbox"
                     id="special-characters"
                     name="special_characters"
+                    {{ special_characters ? 'checked' }}
             >
         </div>
 
