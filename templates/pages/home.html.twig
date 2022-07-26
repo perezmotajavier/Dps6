@@ -1,65 +1,73 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Password Generator</h1>
-
-    {% set length_to_select = app.request.cookies.getInt('app_length',password_default_length) %}
-
-    <form
-            method="get"
-            action="{{ path('app_generate_password') }}"
-    >
-        <div>
-            <label for="length">Length</label>
-            <select id="length" name="length">
-                {% for i in password_min_length..password_max_length %}
-                    <option value="{{ i }}"
-                            {{ i == length_to_select ? 'selected' }}>
-                        {{ i }}
-                    </option>
-                {% endfor %}
-            </select>
+    <div class="card shadow">
+        <div class="card-header">
+            <h1 class="h4 text-center mb-0 text-muted">
+                Password Generator
+            </h1>
         </div>
+        <div class="card-body">
+            {% set length_to_select = app.request.cookies.getInt('app_length', password_default_length) %}
 
-        <div>
-            <label for="uppercase-letters">Uppercase Letters</label>
-            <input
-                    type="checkbox"
-                    id="uppercase-letters"
-                    name="uppercase_letters"
-                    {{ app.request.cookies.getBoolean('app_uppercase_letters') ? 'checked' }}
-            >
+            <form method="get" action="{{ path('app_generate_password') }}">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="length" class="form-label">Length</label>
+                        <select id="length" name="length" class="form-select w-75">
+                            {% for i in password_min_length..password_max_length %}
+                                <option
+                                        value="{{ i }}"
+                                        {{ i == length_to_select ? 'selected' }}
+                                >
+                                    {{ i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input
+                                    type="checkbox"
+                                    id="uppercase-letters"
+                                    name="uppercase_letters"
+                                    class="form-check-input"
+                                    {{ app.request.cookies.getBoolean('app_uppercase_letters') ? 'checked' }}
+                            >
+                            <label for="uppercase-letters" class="form-check-label">Uppercase Letters</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input
+                                    type="checkbox"
+                                    id="digits"
+                                    name="digits"
+                                    class="form-check-input"
+                                    {{ app.request.cookies.getBoolean('app_digits') ? 'checked' }}
+                            >
+                            <label for="digits" class="form-check-label">Digits</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input
+                                    type="checkbox"
+                                    id="special-characters"
+                                    name="special_characters"
+                                    class="form-check-input"
+                                    {{ app.request.cookies.getBoolean('app_special_characters') ? 'checked' }}
+                            >
+                            <label for="special-characters" class="form-check-label">Special Characters</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary w-100">
+                        Generate Password
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <div>
-            <label for="digits">Digits</label>
-            <input
-                    type="checkbox"
-                    id="digits"
-                    name="digits"
-                    {{ app.request.cookies.getBoolean('app_digits') ? 'checked' }}
-            >
-        </div>
-
-        <div>
-            <label for="special-characters">Special Characters</label>
-            <input
-                    type="checkbox"
-                    id="special-characters"
-                    name="special_characters"
-                    {{ app.request.cookies.getBoolean('app_special_characters') ? 'checked' }}
-            >
-        </div>
-
-        <div>
-            <button type="submit">Generate Password</button>
-        </div>
-    </form>
-
-    <footer>
-        <p>
-            Built with &hearts; by
-            <a href="https://parolnscode.com">Parlons Code</a>.
-        </p>
-    </footer>
+    </div>
 {% endblock %}

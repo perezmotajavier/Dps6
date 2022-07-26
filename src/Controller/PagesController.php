@@ -63,7 +63,7 @@ class PagesController extends AbstractController
     {
         $fiveYearsFromNow = new DateTimeImmutable(datetime: '+5 years');
 
-        $response->headers->setCookie(cookie: Cookie::create(name: 'app_length', value: $length));
+        $response->headers->setCookie(cookie: Cookie::create(name: 'app_length', value: $length, expire: $fiveYearsFromNow));
 
         $response->headers->setCookie(cookie: Cookie::create(name: 'app_uppercase_letters', value: $UppercaseLetters ? '1' : '0', expire: $fiveYearsFromNow));
 
