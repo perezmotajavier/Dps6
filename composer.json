@@ -15,6 +15,7 @@
         "symfony/http-foundation": "6.0.*",
         "symfony/runtime": "6.0.*",
         "symfony/twig-bundle": "6.0.*",
+        "symfony/ux-turbo": "^2.3",
         "symfony/yaml": "6.0.*"
     },
     "require-dev": {
