@@ -52,6 +52,16 @@
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/ux-turbo" />
       <path value="$PROJECT_DIR$/vendor/symfony/asset" />
+      <path value="$PROJECT_DIR$/vendor/symplify/smart-file-system" />
+      <path value="$PROJECT_DIR$/vendor/symplify/symfony-static-dumper" />
+      <path value="$PROJECT_DIR$/vendor/symplify/easy-testing" />
+      <path value="$PROJECT_DIR$/vendor/symplify/autowire-array-parameter" />
+      <path value="$PROJECT_DIR$/vendor/symplify/package-builder" />
+      <path value="$PROJECT_DIR$/vendor/symplify/symplify-kernel" />
+      <path value="$PROJECT_DIR$/vendor/symplify/composer-json-manipulator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
