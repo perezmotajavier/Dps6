@@ -17,7 +17,8 @@
         "symfony/twig-bundle": "6.0.*",
         "symfony/ux-turbo": "^2.3",
         "symfony/yaml": "6.0.*",
-        "symplify/symfony-static-dumper": "^11.1"
+        "symplify/symfony-static-dumper": "^11.1",
+        "silex/silex": "~1.1"
     },
     "require-dev": {
         "symfony/debug-bundle": "6.0.*",
