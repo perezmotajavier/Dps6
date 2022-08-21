@@ -19,7 +19,7 @@
         "symfony/yaml": "6.0.*",
         "symplify/symfony-static-dumper": "^11.1"
     },
-    "require-dev": {
+    "require-section": {
         "symfony/debug-bundle": "6.0.*",
         "symfony/maker-bundle": "^1.43",
         "symfony/monolog-bundle": "^3.0",
